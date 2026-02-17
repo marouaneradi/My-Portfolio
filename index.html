@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marouane Radi — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- MATRIX RAIN EASTER EGG OVERLAY -->
+  <canvas id="matrixCanvas" class="matrix-canvas hidden"></canvas>
+
+  <!-- KONAMI NOTIFICATION -->
+  <div class="konami-msg" id="konamiMsg">
+    <span class="konami-icon">🔓</span>
+    <p>MATRIX MODE UNLOCKED</p>
+    <small>Press any key to exit</small>
+  </div>
+
+  <!-- THEME SWITCHER -->
+  <button class="theme-btn" id="themeBtn" title="Switch theme [T]">
+    <span class="theme-icon">◐</span>
+  </button>
+
+  <!-- LOADING SCREEN -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-scan"></div>
+      <div class="loader-grid"></div>
+      <div class="loader-content">
+        <div class="loader-code">
+          <span class="loader-line" style="--d:0s">$ initializing portfolio.exe</span>
+          <span class="loader-line" style="--d:.3s">$ loading marouane_radi.config</span>
+          <span class="loader-line" style="--d:.6s">$ injecting skills_stack.json</span>
+          <span class="loader-line" style="--d:.9s">$ compiling experience.log</span>
+          <span class="loader-line" style="--d:1.2s">$ building UI components...</span>
+          <span class="loader-line loader-success" style="--d:1.5s">✓ system ready. launching...</span>
+        </div>
+        <div class="loader-bar-wrap">
+          <div class="loader-bar" id="loaderBar"></div>
+        </div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo" data-text="MR">MR<span class="nav-logo-dot">.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
+      <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+      <li><a href="#certificates" class="nav-link" data-section="certificates">Certs</a></li>
+      <li><a href="#contact" class="nav-link nav-link-cta" data-section="contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <canvas class="hero-particles" id="heroParticles"></canvas>
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-status">
+        <span class="hero-status-dot"></span>
+        <span>Available for opportunities</span>
+      </div>
+      <div class="hero-name-wrap">
+        <div class="hero-glitch-wrap">
+          <h1 class="hero-name" data-text="MAROUANE">MAROUANE</h1>
+          <h1 class="hero-name hero-name-last" data-text="RADI">RADI</h1>
+        </div>
+        <div class="hero-role-wrap">
+          <span class="hero-role-bracket">&lt;</span>
+          <span class="hero-role" id="heroRole">Full Stack Developer</span>
+          <span class="hero-role-bracket">/&gt;</span>
+        </div>
+      </div>
+      <p class="hero-desc">Crafting digital experiences with clean code and creative vision. Based in Ouarzazate, Morocco — building the web one commit at a time.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          <span>View Work</span>
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">
+          <span>Let's Talk</span>
+        </a>
+      </div>
+      <div class="hero-scroll">
+        <span>scroll</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="6">0</span>
+        <span class="hero-stat-label">Certifications</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="12">0</span>
+        <span class="hero-stat-label">Technologies</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="3">0</span>
+        <span class="hero-stat-label">Languages</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-num">01</span>
+        <span class="section-tag">// about</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-visual">
+          <div class="about-avatar-wrap">
+            <div class="about-avatar-frame">
+              <div class="about-avatar-inner">
+                <div class="about-initials">MR</div>
+                <div class="about-avatar-ring ring-1"></div>
+                <div class="about-avatar-ring ring-2"></div>
+                <div class="about-avatar-ring ring-3"></div>
+              </div>
+            </div>
+            <div class="about-avatar-badge">
+              <span>🇲🇦</span>
+              <span>Morocco</span>
+            </div>
+          </div>
+          <div class="about-langs">
+            <div class="about-lang">
+              <span class="about-lang-flag">🇬🇧</span>
+              <span>English</span>
+            </div>
+            <div class="about-lang">
+              <span class="about-lang-flag">🇫🇷</span>
+              <span>French</span>
+            </div>
+            <div class="about-lang">
+              <span class="about-lang-flag">🇸🇦</span>
+              <span>Arabic</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h2 class="section-title">Shaping the <span class="text-accent">digital future</span>,<br/>one project at a time.</h2>
+          <p class="about-p">I'm a Full Stack Web Developer , specializing in building high-quality web applications. I combine strong technical skills with a passion for UI/UX design — I don't just write code, I craft experiences.</p>
+          <p class="about-p">My toolkit spans the full development spectrum: from polished front-ends with React and Bootstrap, to powerful back-ends with PHP/Laravel and robust databases with MySQL and MongoDB.</p>
+          <div class="about-traits">
+            <div class="about-trait">
+              <span class="about-trait-icon">⚡</span>
+              <div>
+                <strong>Fast Learner</strong>
+                <small>Always up-to-date with latest tech</small>
+              </div>
+            </div>
+            <div class="about-trait">
+              <span class="about-trait-icon">🎯</span>
+              <div>
+                <strong>Detail Oriented</strong>
+                <small>Pixel-perfect, clean code</small>
+              </div>
+            </div>
+            <div class="about-trait">
+              <span class="about-trait-icon">🤝</span>
+              <div>
+                <strong>Team Player</strong>
+                <small>Agile, collaborative mindset</small>
+              </div>
+            </div>
+          </div>
+          <div class="about-cta">
+            <a href="mailto:radimarouane05@gmail.com" class="btn btn-primary">
+              <span>Get In Touch</span>
+            </a>
+            <a href="#" class="about-resume-link" onclick="alert('CV download — coming soon!')">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section class="section section-dark" id="skills">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-num">02</span>
+        <span class="section-tag">// skills</span>
+      </div>
+      <h2 class="section-title">My <span class="text-accent">Arsenal</span></h2>
+      <p class="section-sub">Technologies I wield to bring ideas to life.</p>
+      <div class="skills-grid">
+
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32" fill="none"><polygon points="2,28 16,2 30,28" stroke="currentColor" stroke-width="2" fill="none"/><polygon points="8,22 16,8 24,22" stroke="currentColor" stroke-width="1.5" fill="none" opacity=".5"/></svg>
+          </div>
+          <h3>HTML5</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="95"></div></div>
+          <span class="skill-tag">Frontend</span>
+        </div>
+
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 20l4-8 4 8M8 16h8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <h3>CSS3</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="90"></div></div>
+          <span class="skill-tag">Frontend</span>
+        </div>
+
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 10v8a4 4 0 008 0v-8M10 22h8" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <h3>JavaScript</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="82"></div></div>
+          <span class="skill-tag">Frontend</span>
+        </div>
+
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="2" fill="none"/><ellipse cx="16" cy="16" rx="14" ry="5" stroke="currentColor" stroke-width="1.5" fill="none"/><ellipse cx="16" cy="16" rx="14" ry="5" stroke="currentColor" stroke-width="1.5" fill="none" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="14" ry="5" stroke="currentColor" stroke-width="1.5" fill="none" transform="rotate(120 16 16)"/></svg>
+          </div>
+          <h3>React.js</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="75"></div></div>
+          <span class="skill-tag">Frontend</span>
+        </div>
+
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><path d="M4 8h24M4 16h24M4 24h24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="8" r="2" fill="currentColor"/><circle cx="9" cy="16" r="2" fill="currentColor"/><circle cx="9" cy="24" r="2" fill="currentColor"/></svg>
+          </div>
+          <h3>PHP</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="80"></div></div>
+          <span class="skill-tag">Backend</span>
+        </div>
+
+        <div class="skill-card" data-cat="backend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><rect x="6" y="4" width="20" height="24" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M11 9h10M11 14h10M11 19h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Laravel</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="78"></div></div>
+          <span class="skill-tag">Backend</span>
+        </div>
+
+        <div class="skill-card" data-cat="database">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="12" ry="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 8v8c0 2.2 5.4 4 12 4s12-1.8 12-4V8" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 16v8c0 2.2 5.4 4 12 4s12-1.8 12-4v-8" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+          <h3>MySQL</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="82"></div></div>
+          <span class="skill-tag">Database</span>
+        </div>
+
+        <div class="skill-card" data-cat="database">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><ellipse cx="16" cy="10" rx="10" ry="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M6 10v12c0 2.2 4.5 4 10 4s10-1.8 10-4V10" stroke="currentColor" stroke-width="2" fill="none"/><path d="M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <h3>MongoDB</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="65"></div></div>
+          <span class="skill-tag">Database</span>
+        </div>
+
+        <div class="skill-card" data-cat="tools">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><circle cx="8" cy="26" r="3" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="16" cy="6" r="3" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="26" cy="20" r="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M11 7l12 11M10 25l13-7" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <h3>Git / GitHub</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="85"></div></div>
+          <span class="skill-tag">Tools</span>
+        </div>
+
+        <div class="skill-card" data-cat="tools">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 12h12M10 16h8M10 20h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Jira / Agile</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="70"></div></div>
+          <span class="skill-tag">Tools</span>
+        </div>
+
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><rect x="2" y="2" width="28" height="28" rx="14" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 16h16M16 8v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Bootstrap</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="90"></div></div>
+          <span class="skill-tag">Frontend</span>
+        </div>
+
+        <div class="skill-card" data-cat="frontend">
+          <div class="skill-card-icon">
+            <svg viewBox="0 0 32 32"><path d="M4 16C4 9.4 9.4 4 16 4s12 5.4 12 12-5.4 12-12 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M16 4v24M4 16h24M6 8.5A22 22 0 0126 8.5M6 23.5A22 22 0 0026 23.5" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <h3>jQuery</h3>
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="80"></div></div>
+          <span class="skill-tag">Frontend</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE SECTION -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-num">03</span>
+        <span class="section-tag">// experience</span>
+      </div>
+      <h2 class="section-title">Where I've <span class="text-accent">Worked</span></h2>
+      <div class="exp-timeline">
+        <div class="exp-line"></div>
+        <div class="exp-item reveal-up">
+          <div class="exp-dot">
+            <div class="exp-dot-inner"></div>
+          </div>
+          <div class="exp-card glass-card">
+            <div class="exp-card-header">
+              <div>
+                <span class="exp-badge">Internship</span>
+                <h3 class="exp-role">Web Development Intern</h3>
+                <span class="exp-company">ORMVAO — Office Régional de Mise en Valeur Agricole de Ouarzazate</span>
+              </div>
+              <div class="exp-date">
+                <span>Jan 2026</span>
+                <span class="exp-date-sep">→</span>
+                <span>Feb 2026</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <ul class="exp-list">
+                <li>
+                  <span class="exp-check">✓</span>
+                  Participated in the development and improvement of web applications
+                </li>
+                <li>
+                  <span class="exp-check">✓</span>
+                  Designed modern, responsive interfaces from wireframe to deployment
+                </li>
+                <li>
+                  <span class="exp-check">✓</span>
+                  Developed backend features using PHP & Laravel framework
+                </li>
+                <li>
+                  <span class="exp-check">✓</span>
+                  Managed and optimized MySQL databases
+                </li>
+                <li>
+                  <span class="exp-check">✓</span>
+                  Collaborated in an Agile team following best development practices
+                </li>
+              </ul>
+            </div>
+            <div class="exp-tags">
+              <span>PHP</span><span>Laravel</span><span>MySQL</span><span>HTML/CSS</span><span>JavaScript</span><span>Agile</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item exp-edu reveal-up">
+          <div class="exp-dot">
+            <div class="exp-dot-inner" style="background: var(--accent2);"></div>
+          </div>
+          <div class="exp-card glass-card">
+            <div class="exp-card-header">
+              <div>
+                <span class="exp-badge exp-badge-edu">Education</span>
+                <h3 class="exp-role">Web Development Diploma</h3>
+                <span class="exp-company">ISTA — Ouarzazate</span>
+              </div>
+              <div class="exp-date">
+                <span>2024</span>
+                <span class="exp-date-sep">→</span>
+                <span>2026 (ongoing)</span>
+              </div>
+            </div>
+            <div class="exp-card-body">
+              <p class="exp-desc">Currently in 2nd year of Web Development program, mastering full-stack technologies, project management, and modern development methodologies.</p>
+            </div>
+            <div class="exp-tags">
+              <span>Full Stack</span><span>React</span><span>Node</span><span>UX/UI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item exp-edu reveal-up">
+          <div class="exp-dot">
+            <div class="exp-dot-inner" style="background: var(--accent3);"></div>
+          </div>
+          <div class="exp-card glass-card">
+            <div class="exp-card-header">
+              <div>
+                <span class="exp-badge exp-badge-school">Education</span>
+                <h3 class="exp-role">Baccalauréat — Physical Sciences</h3>
+                <span class="exp-company">High School — Skoura Ouarzazate</span>
+              </div>
+              <div class="exp-date">
+                <span>2023</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section class="section section-dark" id="projects">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-num">04</span>
+        <span class="section-tag">// projects</span>
+      </div>
+      <h2 class="section-title">Featured <span class="text-accent">Projects</span></h2>
+      <p class="section-sub">Built with precision. Designed to impress.</p>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card reveal-up">
+          <div class="project-img">
+            <div class="project-img-inner project-img-1">
+              <div class="project-preview">
+                <div class="pp-bar"><span></span><span></span><span></span></div>
+                <div class="pp-content">
+                  <div class="pp-hero">🌾 Cooperative Market</div>
+                  <div class="pp-lines">
+                    <div class="pp-line w80"></div>
+                    <div class="pp-line w60"></div>
+                    <div class="pp-line w70"></div>
+                  </div>
+                  <div class="pp-cards">
+                    <div class="pp-mini-card"></div>
+                    <div class="pp-mini-card"></div>
+                    <div class="pp-mini-card"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>Cooperative Market</h3>
+             
+            </div>
+            <p>Agricultural management web app built during internship at ORMVAO. Features real-time data visualization, crop tracking, and responsive admin panel.</p>
+            <div class="project-tech">
+              <span>React</span><span>Laravel</span><span>MySQL</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/marouaneradi/Cooperative_Market" target="_blank" class="proj-btn proj-btn-github">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                GitHub
+              </a>
+              
+              <a href="https://cooprativemarket.vercel.app/" class="proj-btn proj-btn-demo">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal-up" style="--delay:.1s">
+          <div class="project-img">
+            <div class="project-img-inner project-img-2">
+              <div class="project-preview">
+                <div class="pp-bar"><span></span><span></span><span></span></div>
+                <div class="pp-content">
+                  <div class="pp-hero" style="color: #7ee8a2">🛒 ShopX</div>
+                  <div class="pp-row">
+                    <div class="pp-col">
+                      <div class="pp-line w60"></div>
+                      <div class="pp-line w80"></div>
+                    </div>
+                    <div class="pp-price">$24.99</div>
+                  </div>
+                  <div class="pp-cards" style="margin-top: 8px">
+                    <div class="pp-mini-card" style="background: #1a4a2e"></div>
+                    <div class="pp-mini-card" style="background: #1a4a2e"></div>
+                    <div class="pp-mini-card" style="background: #1a4a2e"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>ShopX E-Commerce</h3>
+              <span class="project-status open">Open to Collab</span>
+            </div>
+            <p>Full-featured e-commerce platform with product management, cart system, user authentication and admin dashboard built with Laravel MVC architecture.</p>
+            <div class="project-tech">
+              <span>Laravel</span><span>MySQL</span><span>jQuery</span><span>CSS3</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/marouaneradi" target="_blank" class="proj-btn proj-btn-github">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                GitHub
+              </a>
+              <a href="#contact" class="proj-btn proj-btn-collab">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                Collaborate
+              </a>
+              <a href="#contact" class="proj-btn proj-btn-demo">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card reveal-up" style="--delay:.2s">
+          <div class="project-img">
+            <div class="project-img-inner project-img-3">
+              <div class="project-preview">
+                <div class="pp-bar"><span></span><span></span><span></span></div>
+                <div class="pp-content">
+                  <div class="pp-hero" style="color: #f4c430">📋 TaskFlow</div>
+                  <div class="pp-task"><span class="pp-check-circle"></span><div class="pp-line w70"></div></div>
+                  <div class="pp-task"><span class="pp-check-circle done"></span><div class="pp-line w50"></div></div>
+                  <div class="pp-task"><span class="pp-check-circle"></span><div class="pp-line w80"></div></div>
+                  <div class="pp-task"><span class="pp-check-circle done"></span><div class="pp-line w60"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>TaskFlow App</h3>
+              <span class="project-status open">Open to Collab</span>
+            </div>
+            <p>Real-time task management application with Kanban boards, team collaboration features, drag-and-drop interface and progress analytics dashboard.</p>
+            <div class="project-tech">
+              <span>React</span><span>MongoDB</span><span>PHP</span><span>JavaScript</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/marouaneradi" target="_blank" class="proj-btn proj-btn-github">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                GitHub
+              </a>
+              <a href="#contact" class="proj-btn proj-btn-collab">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                Collaborate
+              </a>
+              <a href="#contact" class="proj-btn proj-btn-demo">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card reveal-up" style="--delay:.3s">
+          <div class="project-img">
+            <div class="project-img-inner project-img-4">
+              <div class="project-preview">
+                <div class="pp-bar"><span></span><span></span><span></span></div>
+                <div class="pp-content">
+                  <div class="pp-hero" style="color: #a78bfa">🔐 SecureAuth</div>
+                  <div class="pp-form">
+                    <div class="pp-field"><div class="pp-line w80"></div></div>
+                    <div class="pp-field"><div class="pp-line w80" style="background:#6d28d9;opacity:.5"></div></div>
+                    <div class="pp-submit"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3>SecureAuth System</h3>
+              <span class="project-status open">Open to Collab</span>
+            </div>
+            <p>Authentication system following cybersecurity fundamentals — JWT tokens, role-based access control, secure password hashing, and audit logging.</p>
+            <div class="project-tech">
+              <span>PHP</span><span>MySQL</span><span>Security</span><span>JWT</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/marouaneradi" target="_blank" class="proj-btn proj-btn-github">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                GitHub
+              </a>
+              <a href="#contact" class="proj-btn proj-btn-collab">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                Collaborate
+              </a>
+              <a href="#contact" class="proj-btn proj-btn-demo">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="projects-cta">
+        <a href="https://github.com/marouaneradi" target="_blank" class="btn btn-ghost btn-lg">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          View all on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES SECTION -->
+  <section class="section" id="certificates">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-num">05</span>
+        <span class="section-tag">// certificates</span>
+      </div>
+      <h2 class="section-title">My <span class="text-accent">Certifications</span></h2>
+      <p class="section-sub">Continuously learning. Continuously growing.</p>
+      <div class="certs-grid">
+        <div class="cert-card glass-card reveal-up">
+          <div class="cert-icon">🌐</div>
+          <div class="cert-body">
+            <h3>Web Fundamentals</h3>
+            <p>Web Development with HTML5</p>
+            <span class="cert-badge">Frontend</span>
+          </div>
+          <div class="cert-glow"></div>
+        </div>
+        <div class="cert-card glass-card reveal-up" style="--delay:.05s">
+          <div class="cert-icon">🎨</div>
+          <div class="cert-body">
+            <h3>Bootstrap</h3>
+            <p>Environment, Requirements & Setup</p>
+            <span class="cert-badge">UI Framework</span>
+          </div>
+          <div class="cert-glow"></div>
+        </div>
+        <div class="cert-card glass-card reveal-up" style="--delay:.1s">
+          <div class="cert-icon">🗄️</div>
+          <div class="cert-body">
+            <h3>Database Fundamentals</h3>
+            <p>Database Concepts & Design</p>
+            <span class="cert-badge">Backend</span>
+          </div>
+          <div class="cert-glow"></div>
+        </div>
+        <div class="cert-card glass-card reveal-up" style="--delay:.15s">
+          <div class="cert-icon">🔒</div>
+          <div class="cert-body">
+            <h3>Cybersecurity (CC)</h3>
+            <p>Core Cybersecurity Principles</p>
+            <span class="cert-badge">Security</span>
+          </div>
+          <div class="cert-glow"></div>
+        </div>
+        <div class="cert-card glass-card reveal-up" style="--delay:.2s">
+          <div class="cert-icon">🐍</div>
+          <div class="cert-body">
+            <h3>Python</h3>
+            <p>New Developments in Python</p>
+            <span class="cert-badge">Language</span>
+          </div>
+          <div class="cert-glow"></div>
+        </div>
+        <div class="cert-card glass-card reveal-up" style="--delay:.25s">
+          <div class="cert-icon">📋</div>
+          <div class="cert-body">
+            <h3>Jira Cloud</h3>
+            <p>Planning Software Development Projects</p>
+            <span class="cert-badge">Project Mgmt</span>
+          </div>
+          <div class="cert-glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="section section-dark" id="contact">
+    <div class="container">
+      <div class="section-label">
+        <span class="section-num">06</span>
+        <span class="section-tag">// contact</span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-left">
+          <h2 class="section-title">Let's Build <span class="text-accent">Something</span><br/>Great Together.</h2>
+          <p class="contact-sub">I'm open to full-time roles, freelance projects, and exciting collaborations. If you have an idea, I have the skills to bring it to life.</p>
+          <div class="contact-info">
+            <a href="mailto:radimarouane05@gmail.com" class="contact-item">
+              <span class="contact-item-icon">✉</span>
+              <span>radimarouane05@gmail.com</span>
+            </a>
+            <a href="tel:+212704460903" class="contact-item">
+              <span class="contact-item-icon">📱</span>
+              <span>+212 704 460 903</span>
+            </a>
+            <div class="contact-item">
+              <span class="contact-item-icon">📍</span>
+              <span>Ouarzazate, Morocco</span>
+            </div>
+          </div>
+          <div class="contact-socials">
+            <a href="https://github.com/marouaneradi" target="_blank" class="social-btn" title="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/marouaneradi" target="_blank" class="social-btn" title="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="mailto:radimarouane05@gmail.com" class="social-btn" title="Email">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="contact-right">
+          <form class="contact-form glass-card" id="contactForm">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <select>
+                <option>Job Opportunity</option>
+                <option>Collaboration</option>
+                <option>Freelance Project</option>
+                <option>Just saying hello</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Tell me about your project..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-logo">MR<span>.</span></span>
+          <p>Designed & Built by Marouane Radi<br/>© 2026 — All rights reserved.</p>
+        </div>
+        <div class="footer-right">
+          <p class="footer-hint">💡 <em>Try pressing <kbd>T</kbd> for theme, <kbd>↑↑↓↓←→←→BA</kbd> for a secret...</em></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
