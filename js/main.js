@@ -432,24 +432,34 @@ function deactivateMatrix() {
 
 
 // ============================================
-// CONTACT FORM
+// CONTACT FORM → WHATSAPP
 // ============================================
 const contactForm = document.getElementById('contactForm');
+
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = contactForm.querySelector('button[type="submit"] span');
-    const originalText = btn.textContent;
-    btn.textContent = 'Sending...';
 
-    setTimeout(() => {
-      btn.textContent = '✓ Sent!';
-      showToast('📨 Message sent! Marouane will reply soon.');
-      contactForm.reset();
-      setTimeout(() => {
-        btn.textContent = originalText;
-      }, 2000);
-    }, 1200);
+    const name = contactForm.querySelector('input[type="text"]').value;
+    const email = contactForm.querySelector('input[type="email"]').value;
+    const subject = contactForm.querySelector('select').value;
+    const message = contactForm.querySelector('textarea').value;
+
+    const phoneNumber = "212704460903"; 
+
+    const whatsappMessage =
+      `👋 New Portfolio Message%0A%0A` +
+      `👤 Name: ${encodeURIComponent(name)}%0A` +
+      `📧 Email: ${encodeURIComponent(email)}%0A` +
+      `📌 Subject: ${encodeURIComponent(subject)}%0A` +
+      `💬 Message: ${encodeURIComponent(message)}`;
+
+    const url = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+
+    window.open(url, "_blank");
+
+    showToast('📱 Redirecting to WhatsApp...');
+    contactForm.reset();
   });
 }
 
