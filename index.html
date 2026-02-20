@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Language Switcher Styles (inline for single-file deployment ease) -->
+  <link rel="stylesheet" href="css/i18n.css" />
 </head>
 <body>
 
@@ -52,31 +54,41 @@
     </div>
   </div>
 
-  <!-- NAV -->
+  <!-- NAV
+       The language switcher <li> will be injected here by i18n.js
+       between the Certs link and the Contact CTA link.
+  -->
   <nav class="nav" id="nav">
     <a href="#" class="nav-logo" data-text="MR">MR<span class="nav-logo-dot">.</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
-      <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
-      <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-      <li><a href="#certificates" class="nav-link" data-section="certificates">Certs</a></li>
-      <li><a href="#contact" class="nav-link nav-link-cta" data-section="contact">Contact</a></li>
+      <li><a href="#about"       class="nav-link" data-section="about"       data-i18n="nav_about">About</a></li>
+      <li><a href="#skills"      class="nav-link" data-section="skills"      data-i18n="nav_skills">Skills</a></li>
+      <li><a href="#experience"  class="nav-link" data-section="experience"  data-i18n="nav_experience">Experience</a></li>
+      <li><a href="#projects"    class="nav-link" data-section="projects"    data-i18n="nav_projects">Projects</a></li>
+      <li><a href="#certificates"class="nav-link" data-section="certificates"data-i18n="nav_certs">Certs</a></li>
+      <!-- lang-switcher injected here by i18n.js -->
+      <li><a href="#contact" class="nav-link nav-link-cta" data-section="contact" data-i18n="nav_contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- ================================================
+       HERO SECTION
+  ================================================ -->
   <section class="hero" id="hero">
     <canvas class="hero-particles" id="heroParticles"></canvas>
     <div class="hero-grid-overlay"></div>
     <div class="hero-content">
+
+      <!-- Status badge -->
       <div class="hero-status">
         <span class="hero-status-dot"></span>
-        <span>Available for opportunities</span>
+        <span data-i18n="hero_status">Available for opportunities</span>
       </div>
+
+      <!-- Name + animated role -->
       <div class="hero-name-wrap">
         <div class="hero-glitch-wrap">
           <h1 class="hero-name" data-text="MAROUANE">MAROUANE</h1>
@@ -88,50 +100,63 @@
           <span class="hero-role-bracket">/&gt;</span>
         </div>
       </div>
-      <p class="hero-desc">Crafting digital experiences with clean code and creative vision. Based in Ouarzazate, Morocco — building the web one commit at a time.</p>
+
+      <!-- Description -->
+      <p class="hero-desc" data-i18n="hero_desc">
+        Crafting digital experiences with clean code and creative vision. Based in Ouarzazate, Morocco — building the web one commit at a time.
+      </p>
+
+      <!-- CTAs -->
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">
-          <span>View Work</span>
+          <span data-i18n="hero_cta_work">View Work</span>
           <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#contact" class="btn btn-ghost">
-          <span>Let's Talk</span>
+          <span data-i18n="hero_cta_talk">Let's Talk</span>
         </a>
       </div>
+
+      <!-- Scroll hint -->
       <div class="hero-scroll">
-        <span>scroll</span>
+        <span data-i18n="hero_scroll">scroll</span>
         <div class="hero-scroll-line"></div>
       </div>
     </div>
+
+    <!-- Stats sidebar -->
     <div class="hero-side">
       <div class="hero-stat">
         <span class="hero-stat-num" data-target="6">0</span>
-        <span class="hero-stat-label">Certifications</span>
+        <span class="hero-stat-label" data-i18n="hero_stat_certs">Certifications</span>
       </div>
       <div class="hero-stat">
         <span class="hero-stat-num" data-target="12">0</span>
-        <span class="hero-stat-label">Technologies</span>
+        <span class="hero-stat-label" data-i18n="hero_stat_tech">Technologies</span>
       </div>
       <div class="hero-stat">
         <span class="hero-stat-num" data-target="3">0</span>
-        <span class="hero-stat-label">Languages</span>
+        <span class="hero-stat-label" data-i18n="hero_stat_langs">Languages</span>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT SECTION -->
+  <!-- ================================================
+       ABOUT SECTION
+  ================================================ -->
   <section class="section" id="about">
     <div class="container">
       <div class="section-label">
         <span class="section-num">01</span>
-        <span class="section-tag">// about</span>
+        <span class="section-tag" data-i18n="section_about_tag">// about</span>
       </div>
       <div class="about-grid">
+
+        <!-- Visual column -->
         <div class="about-visual">
           <div class="about-avatar-wrap">
             <div class="about-avatar-frame">
               <div class="about-avatar-inner">
-                
                 <img src="assets/me.jpeg" alt="My Photo" class="about-photo" />
                 <div class="about-avatar-ring ring-1"></div>
                 <div class="about-avatar-ring ring-2"></div>
@@ -143,75 +168,91 @@
               <span>Morocco</span>
             </div>
           </div>
+
+          <!-- Language badges (decorative profile languages, NOT the switcher) -->
           <div class="about-langs">
-            <div class="about-lang">
-              <span class="about-lang-flag">🇬🇧</span>
+            <div class="about-lang" data-lang="en">
+              <span class="lang-badge">EN</span>
               <span>English</span>
             </div>
-            <div class="about-lang">
-              <span class="about-lang-flag">🇫🇷</span>
+            <div class="about-lang" data-lang="fr">
+              <span class="lang-badge">FR</span>
               <span>French</span>
             </div>
-            <div class="about-lang">
-              <span class="about-lang-flag">🇸🇦</span>
+            <div class="about-lang" data-lang="ar">
+              <span class="lang-badge">AR</span>
               <span>Arabic</span>
             </div>
           </div>
         </div>
+
+        <!-- Text column -->
         <div class="about-text">
-          <h2 class="section-title">Shaping the <span class="text-accent">digital future</span>,<br/>one project at a time.</h2>
-          <p class="about-p">I'm a Full Stack Web Developer , specializing in building high-quality web applications. I combine strong technical skills with a passion for UI/UX design — I don't just write code, I craft experiences.</p>
-          <p class="about-p">My toolkit spans the full development spectrum: from polished front-ends with React and Bootstrap, to powerful back-ends with PHP/Laravel and robust databases with MySQL and MongoDB.</p>
+          <h2 class="section-title" data-i18n="about_title">
+            Shaping the <span class="text-accent">digital future</span>,<br/>one project at a time.
+          </h2>
+          <p class="about-p" data-i18n="about_p1">
+            I'm a Full Stack Web Developer, specializing in building high-quality web applications. I combine strong technical skills with a passion for UI/UX design — I don't just write code, I craft experiences.
+          </p>
+          <p class="about-p" data-i18n="about_p2">
+            My toolkit spans the full development spectrum: from polished front-ends with React and Bootstrap, to powerful back-ends with PHP/Laravel and robust databases with MySQL and MongoDB.
+          </p>
+
+          <!-- Traits -->
           <div class="about-traits">
             <div class="about-trait">
               <span class="about-trait-icon">⚡</span>
               <div>
-                <strong>Fast Learner</strong>
-                <small>Always up-to-date with latest tech</small>
+                <strong data-i18n="about_trait1_title">Fast Learner</strong>
+                <small data-i18n="about_trait1_desc">Always up-to-date with latest tech</small>
               </div>
             </div>
             <div class="about-trait">
               <span class="about-trait-icon">🎯</span>
               <div>
-                <strong>Detail Oriented</strong>
-                <small>Pixel-perfect, clean code</small>
+                <strong data-i18n="about_trait2_title">Detail Oriented</strong>
+                <small data-i18n="about_trait2_desc">Pixel-perfect, clean code</small>
               </div>
             </div>
             <div class="about-trait">
               <span class="about-trait-icon">🤝</span>
               <div>
-                <strong>Team Player</strong>
-                <small>Agile, collaborative mindset</small>
+                <strong data-i18n="about_trait3_title">Team Player</strong>
+                <small data-i18n="about_trait3_desc">Agile, collaborative mindset</small>
               </div>
             </div>
           </div>
+
+          <!-- CTAs -->
           <div class="about-cta">
             <a href="https://www.linkedin.com/in/marouane-radi-843184362/" class="btn btn-primary">
-              <span>Get In Touch</span>
+              <span data-i18n="about_cta_touch">Get In Touch</span>
+            </a>
             <a href="assets/cv.pdf" class="about-resume-link" download>
-            <svg viewBox="0 0 24 24">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-            </svg>
-            Download CV
-          </a>
-
+              <svg viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+              <span data-i18n="about_cv">Download CV</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS SECTION -->
+  <!-- ================================================
+       SKILLS SECTION
+  ================================================ -->
   <section class="section section-dark" id="skills">
     <div class="container">
       <div class="section-label">
         <span class="section-num">02</span>
-        <span class="section-tag">// skills</span>
+        <span class="section-tag" data-i18n="section_skills_tag">// skills</span>
       </div>
-      <h2 class="section-title">My <span class="text-accent">Arsenal</span></h2>
-      <p class="section-sub">Technologies I wield to bring ideas to life.</p>
-      <div class="skills-grid">
+      <h2 class="section-title" data-i18n="skills_title">My <span class="text-accent">Arsenal</span></h2>
+      <p class="section-sub" data-i18n="skills_sub">Technologies I wield to bring ideas to life.</p>
 
+      <div class="skills-grid">
         <div class="skill-card" data-cat="frontend">
           <div class="skill-card-icon">
             <svg viewBox="0 0 32 32" fill="none"><polygon points="2,28 16,2 30,28" stroke="currentColor" stroke-width="2" fill="none"/><polygon points="8,22 16,8 24,22" stroke="currentColor" stroke-width="1.5" fill="none" opacity=".5"/></svg>
@@ -319,60 +360,47 @@
           <div class="skill-bar"><div class="skill-bar-fill" data-w="80"></div></div>
           <span class="skill-tag">Frontend</span>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- EXPERIENCE SECTION -->
+  <!-- ================================================
+       EXPERIENCE SECTION
+  ================================================ -->
   <section class="section" id="experience">
     <div class="container">
       <div class="section-label">
         <span class="section-num">03</span>
-        <span class="section-tag">// experience</span>
+        <span class="section-tag" data-i18n="section_exp_tag">// experience</span>
       </div>
-      <h2 class="section-title">Where I've <span class="text-accent">Worked</span></h2>
+      <h2 class="section-title" data-i18n="exp_title">Where I've <span class="text-accent">Worked</span></h2>
+
       <div class="exp-timeline">
         <div class="exp-line"></div>
+
+        <!-- Experience 1: Internship -->
         <div class="exp-item reveal-up">
-          <div class="exp-dot">
-            <div class="exp-dot-inner"></div>
-          </div>
+          <div class="exp-dot"><div class="exp-dot-inner"></div></div>
           <div class="exp-card glass-card">
             <div class="exp-card-header">
               <div>
-                <span class="exp-badge">Internship</span>
-                <h3 class="exp-role">Web Development Intern</h3>
-                <span class="exp-company">ORMVAO — Office Régional de Mise en Valeur Agricole de Ouarzazate</span>
+                <span class="exp-badge"          data-i18n="exp1_badge">Internship</span>
+                <h3 class="exp-role"             data-i18n="exp1_role">Web Development Intern</h3>
+                <span class="exp-company"        data-i18n="exp1_company">ORMVAO — Office Régional de Mise en Valeur Agricole de Ouarzazate</span>
               </div>
               <div class="exp-date">
-                <span>Jan 2026</span>
+                <span data-i18n="exp1_date_start">Jan 2026</span>
                 <span class="exp-date-sep">→</span>
-                <span>Feb 2026</span>
+                <span data-i18n="exp1_date_end">Feb 2026</span>
               </div>
             </div>
             <div class="exp-card-body">
               <ul class="exp-list">
-                <li>
-                  <span class="exp-check">✓</span>
-                  Participated in the development and improvement of web applications
-                </li>
-                <li>
-                  <span class="exp-check">✓</span>
-                  Designed modern, responsive interfaces from wireframe to deployment
-                </li>
-                <li>
-                  <span class="exp-check">✓</span>
-                  Developed backend features using PHP & Laravel framework
-                </li>
-                <li>
-                  <span class="exp-check">✓</span>
-                  Managed and optimized MySQL databases
-                </li>
-                <li>
-                  <span class="exp-check">✓</span>
-                  Collaborated in an Agile team following best development practices
-                </li>
+                <li><span class="exp-check">✓</span><span data-i18n="exp1_li1">Participated in the development and improvement of web applications</span></li>
+                <li><span class="exp-check">✓</span><span data-i18n="exp1_li2">Designed modern, responsive interfaces from wireframe to deployment</span></li>
+                <li><span class="exp-check">✓</span><span data-i18n="exp1_li3">Developed backend features using PHP & Laravel framework</span></li>
+                <li><span class="exp-check">✓</span><span data-i18n="exp1_li4">Managed and optimized MySQL databases</span></li>
+                <li><span class="exp-check">✓</span><span data-i18n="exp1_li5">Collaborated in an Agile team following best development practices</span></li>
               </ul>
             </div>
             <div class="exp-tags">
@@ -381,25 +409,26 @@
           </div>
         </div>
 
+        <!-- Experience 2: Education ISTA -->
         <div class="exp-item exp-edu reveal-up">
-          <div class="exp-dot">
-            <div class="exp-dot-inner" style="background: var(--accent2);"></div>
-          </div>
+          <div class="exp-dot"><div class="exp-dot-inner" style="background: var(--accent2);"></div></div>
           <div class="exp-card glass-card">
             <div class="exp-card-header">
               <div>
-                <span class="exp-badge exp-badge-edu">Education</span>
-                <h3 class="exp-role">Web Development Diploma</h3>
-                <span class="exp-company">ISTA — Ouarzazate</span>
+                <span class="exp-badge exp-badge-edu" data-i18n="exp2_badge">Education</span>
+                <h3 class="exp-role"               data-i18n="exp2_role">Web Development Diploma</h3>
+                <span class="exp-company"          data-i18n="exp2_company">ISTA — Ouarzazate</span>
               </div>
               <div class="exp-date">
-                <span>2024</span>
+                <span data-i18n="exp2_date_start">2024</span>
                 <span class="exp-date-sep">→</span>
-                <span>2026 (ongoing)</span>
+                <span data-i18n="exp2_date_end">2026 (ongoing)</span>
               </div>
             </div>
             <div class="exp-card-body">
-              <p class="exp-desc">Currently in 2nd year of Web Development program, mastering full-stack technologies, project management, and modern development methodologies.</p>
+              <p class="exp-desc" data-i18n="exp2_desc">
+                Currently in 2nd year of Web Development program, mastering full-stack technologies, project management, and modern development methodologies.
+              </p>
             </div>
             <div class="exp-tags">
               <span>Full Stack</span><span>React</span><span>Node</span><span>UX/UI</span>
@@ -407,20 +436,17 @@
           </div>
         </div>
 
+        <!-- Experience 3: Baccalauréat -->
         <div class="exp-item exp-edu reveal-up">
-          <div class="exp-dot">
-            <div class="exp-dot-inner" style="background: var(--accent3);"></div>
-          </div>
+          <div class="exp-dot"><div class="exp-dot-inner" style="background: var(--accent3);"></div></div>
           <div class="exp-card glass-card">
             <div class="exp-card-header">
               <div>
-                <span class="exp-badge exp-badge-school">Education</span>
-                <h3 class="exp-role">Baccalauréat — Physical Sciences</h3>
-                <span class="exp-company">High School — Skoura Ouarzazate</span>
+                <span class="exp-badge exp-badge-school" data-i18n="exp3_badge">Education</span>
+                <h3 class="exp-role"                    data-i18n="exp3_role">Baccalauréat — Physical Sciences</h3>
+                <span class="exp-company"               data-i18n="exp3_company">High School — Skoura Ouarzazate</span>
               </div>
-              <div class="exp-date">
-                <span>2023</span>
-              </div>
+              <div class="exp-date"><span>2023</span></div>
             </div>
           </div>
         </div>
@@ -428,19 +454,21 @@
     </div>
   </section>
 
-  <!-- PROJECTS SECTION -->
+  <!-- ================================================
+       PROJECTS SECTION
+  ================================================ -->
   <section class="section section-dark" id="projects">
     <div class="container">
       <div class="section-label">
         <span class="section-num">04</span>
-        <span class="section-tag">// projects</span>
+        <span class="section-tag" data-i18n="section_proj_tag">// projects</span>
       </div>
-      <h2 class="section-title">Featured <span class="text-accent">Projects</span></h2>
-      <p class="section-sub">Built with precision. Designed to impress.</p>
+      <h2 class="section-title" data-i18n="proj_title">Featured <span class="text-accent">Projects</span></h2>
+      <p class="section-sub"    data-i18n="proj_sub">Built with precision. Designed to impress.</p>
 
       <div class="projects-grid">
 
-        <!-- Project 1 -->
+        <!-- Project 1: Cooperative Market -->
         <div class="project-card reveal-up">
           <div class="project-img">
             <div class="project-img-inner project-img-1">
@@ -449,14 +477,10 @@
                 <div class="pp-content">
                   <div class="pp-hero">🌾 Cooperative Market</div>
                   <div class="pp-lines">
-                    <div class="pp-line w80"></div>
-                    <div class="pp-line w60"></div>
-                    <div class="pp-line w70"></div>
+                    <div class="pp-line w80"></div><div class="pp-line w60"></div><div class="pp-line w70"></div>
                   </div>
                   <div class="pp-cards">
-                    <div class="pp-mini-card"></div>
-                    <div class="pp-mini-card"></div>
-                    <div class="pp-mini-card"></div>
+                    <div class="pp-mini-card"></div><div class="pp-mini-card"></div><div class="pp-mini-card"></div>
                   </div>
                 </div>
               </div>
@@ -464,198 +488,165 @@
           </div>
           <div class="project-info">
             <div class="project-header">
-              <h3>Cooperative Market</h3>
-             
+              <h3 data-i18n="proj1_name">Cooperative Market</h3>
             </div>
-            <p>Agricultural management web app built during internship at ORMVAO. Features real-time data visualization, crop tracking, and responsive admin panel.</p>
-            <div class="project-tech">
-              <span>React</span><span>Laravel</span><span>MySQL</span>
-            </div>
+            <p data-i18n="proj1_desc">Agricultural management web app built during internship at ORMVAO. Features real-time data visualization, crop tracking, and responsive admin panel.</p>
+            <div class="project-tech"><span>React</span><span>Laravel</span><span>MySQL</span></div>
             <div class="project-actions">
               <a href="https://github.com/marouaneradi/Cooperative_Market" target="_blank" class="proj-btn proj-btn-github">
                 <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-                GitHub
+                <span data-i18n="proj_btn_github">GitHub</span>
               </a>
-              
               <a href="https://cooprativemarket.vercel.app/" class="proj-btn proj-btn-demo">
                 <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-                Live Demo
+                <span data-i18n="proj_btn_demo">Live Demo</span>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Project 2 -->
-<div class="project-card reveal-up" style="--delay:.1s">
-  <div class="project-img">
-    <div class="project-img-inner project-img-2">
-      <div class="project-preview">
-        <div class="pp-bar"><span></span><span></span><span></span></div>
-        <div class="pp-content">
-          <div class="pp-hero" style="color: #7ec8ff">🌦 Nimbus</div>
-          <div class="pp-row">
-            <div class="pp-col">
-              <div class="pp-line w60"></div>
-              <div class="pp-line w80"></div>
+        <!-- Project 2: Nimbus -->
+        <div class="project-card reveal-up" style="--delay:.1s">
+          <div class="project-img">
+            <div class="project-img-inner project-img-2">
+              <div class="project-preview">
+                <div class="pp-bar"><span></span><span></span><span></span></div>
+                <div class="pp-content">
+                  <div class="pp-hero" style="color: #7ec8ff">🌦 Nimbus</div>
+                  <div class="pp-row">
+                    <div class="pp-col"><div class="pp-line w60"></div><div class="pp-line w80"></div></div>
+                    <div class="pp-price">Live Data</div>
+                  </div>
+                  <div class="pp-cards" style="margin-top: 8px">
+                    <div class="pp-mini-card" style="background:#1a3d4a"></div>
+                    <div class="pp-mini-card" style="background:#1a3d4a"></div>
+                    <div class="pp-mini-card" style="background:#1a3d4a"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="pp-price">Live Data</div>
           </div>
-          <div class="pp-cards" style="margin-top: 8px">
-            <div class="pp-mini-card" style="background: #1a3d4a"></div>
-            <div class="pp-mini-card" style="background: #1a3d4a"></div>
-            <div class="pp-mini-card" style="background: #1a3d4a"></div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3 data-i18n="proj2_name">Nimbus</h3>
+              <span class="project-status open" data-i18n="proj_live">Live Project</span>
+            </div>
+            <p data-i18n="proj2_desc">Modern weather application that fetches real-time data from the OpenWeatherMap API. Users can search for any city worldwide and instantly view temperature, humidity, wind speed, and dynamic weather conditions.</p>
+            <div class="project-tech"><span>JavaScript</span><span>API</span><span>HTML5</span><span>CSS3</span></div>
+            <div class="project-actions">
+              <a href="https://github.com/marouaneradi/React-weather-app-with-Vite-and-OpenWeather-API" target="_blank" class="proj-btn proj-btn-github">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                <span data-i18n="proj_btn_github">GitHub</span>
+              </a>
+              <a href="https://nimbus-sage-ten.vercel.app/" target="_blank" class="proj-btn proj-btn-demo">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                <span data-i18n="proj_btn_demo">Live Demo</span>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="project-info">
-    <div class="project-header">
-      <h3>Nimbus</h3>
-      <span class="project-status open">Live Project</span>
-    </div>
-
-    <p>
-      Modern weather application that fetches real-time data from the OpenWeatherMap API.
-      Users can search for any city worldwide and instantly view temperature,
-      humidity, wind speed, and dynamic weather conditions.
-    </p>
-
-    <div class="project-tech">
-      <span>JavaScript</span>
-      <span>API</span>
-      <span>HTML5</span>
-      <span>CSS3</span>
-    </div>
-
-    <div class="project-actions">
-
-      
-      <a href="https://github.com/marouaneradi/React-weather-app-with-Vite-and-OpenWeather-API" target="_blank" class="proj-btn proj-btn-github">
-        <svg viewBox="0 0 24 24">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
-        </svg>
-        GitHub
-      </a>
-
-      <!-- Live demo -->
-      <a href="https://nimbus-sage-ten.vercel.app/" target="_blank" class="proj-btn proj-btn-demo">
-        <svg viewBox="0 0 24 24">
-          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
-        </svg>
-        Live Demo
-      </a>
-
-    </div>
-  </div>
-</div>
-
-
-        <!-- Project 3 -->
-<div class="project-card reveal-up" style="--delay:.2s">
-  <div class="project-img">
-    <div class="project-img-inner project-img-3">
-      <div class="project-preview">
-        <div class="pp-bar"><span></span><span></span><span></span></div>
-        <div class="pp-content">
-          <div class="pp-hero" style="color: #e8b86d">◈ CineFind</div>
-          <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w70"></div></div>
-          <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w50"></div></div>
-          <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w80"></div></div>
-          <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w60"></div></div>
+        <!-- Project 3: CineFind -->
+        <div class="project-card reveal-up" style="--delay:.2s">
+          <div class="project-img">
+            <div class="project-img-inner project-img-3">
+              <div class="project-preview">
+                <div class="pp-bar"><span></span><span></span><span></span></div>
+                <div class="pp-content">
+                  <div class="pp-hero" style="color: #e8b86d">◈ CineFind</div>
+                  <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w70"></div></div>
+                  <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w50"></div></div>
+                  <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w80"></div></div>
+                  <div class="pp-task"><span class="pp-movie-thumb"></span><div class="pp-line w60"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3 data-i18n="proj3_name">CineFind</h3>
+              <span class="project-status open" data-i18n="proj_live">Live Project</span>
+            </div>
+            <p data-i18n="proj3_desc">Cinematic movie search app powered by the OMDb API. Features real-time search, type filtering, paginated results, and a full movie detail page with ratings, cast, and box office data.</p>
+            <div class="project-tech"><span>React</span><span>Vite</span><span>React Router</span><span>OMDb API</span></div>
+            <div class="project-actions">
+              <a href="https://github.com/marouaneradi/movie-search-app" target="_blank" class="proj-btn proj-btn-github">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                <span data-i18n="proj_btn_github">GitHub</span>
+              </a>
+              <a href="https://movie-search-app-ten-kappa.vercel.app/" class="proj-btn proj-btn-demo">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                <span data-i18n="proj_btn_demo">Live Demo</span>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="project-info">
-    <div class="project-header">
-      <h3>CineFind</h3>
-      <span class="project-status open">Live Project</span>
-    </div>
-    <p>Cinematic movie search app powered by the OMDb API. Features real-time search, type filtering, paginated results, and a full movie detail page with ratings, cast, and box office data.</p>
-    <div class="project-tech">
-      <span>React</span><span>Vite</span><span>React Router</span><span>OMDb API</span>
-    </div>
-    <div class="project-actions">
-      <a href="https://github.com/marouaneradi/movie-search-app" target="_blank" class="proj-btn proj-btn-github">
-        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-        GitHub
-      </a>
-      <a href="https://movie-search-app-ten-kappa.vercel.app/" class="proj-btn proj-btn-demo">
-        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-        Live Demo
-      </a>
-    </div>
-  </div>
-</div>
-        <!-- Project 4 -->
-<div class="project-card reveal-up" style="--delay:.2s">
-  <div class="project-img">
-    <div class="project-img-inner project-img-3">
-      <div class="project-preview">
-        <div class="pp-bar"><span></span><span></span><span></span></div>
-        <div class="pp-content">
-          <div class="pp-hero" style="color: #6e9fd4">⬡ GitFinder</div>
-          <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w70"></div></div>
-          <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w50"></div></div>
-          <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w80"></div></div>
-          <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w60"></div></div>
+
+        <!-- Project 4: GitHub Profile Finder -->
+        <div class="project-card reveal-up" style="--delay:.3s">
+          <div class="project-img">
+            <div class="project-img-inner project-img-4">
+              <div class="project-preview">
+                <div class="pp-bar"><span></span><span></span><span></span></div>
+                <div class="pp-content">
+                  <div class="pp-hero" style="color: #6e9fd4">⬡ GitFinder</div>
+                  <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w70"></div></div>
+                  <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w50"></div></div>
+                  <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w80"></div></div>
+                  <div class="pp-task"><span class="pp-avatar-thumb"></span><div class="pp-line w60"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <div class="project-header">
+              <h3 data-i18n="proj4_name">GitHub Profile Finder</h3>
+              <span class="project-status open" data-i18n="proj_live">Live Project</span>
+            </div>
+            <p data-i18n="proj4_desc">GitHub user search app powered by the GitHub API. Look up any developer by username to instantly view their profile, repositories, followers, following count, and account details.</p>
+            <div class="project-tech"><span>React</span><span>Vite</span><span>GitHub API</span><span>CSS</span></div>
+            <div class="project-actions">
+              <a href="https://github.com/marouaneradi/github-profile-finder" target="_blank" class="proj-btn proj-btn-github">
+                <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                <span data-i18n="proj_btn_github">GitHub</span>
+              </a>
+              <a href="https://github-profile-finder-three-rho.vercel.app/" target="_blank" class="proj-btn proj-btn-demo">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                <span data-i18n="proj_btn_demo">Live Demo</span>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="project-info">
-    <div class="project-header">
-      <h3>GitHub Profile Finder</h3>
-      <span class="project-status open">Live Project</span>
-    </div>
-    <p>GitHub user search app powered by the GitHub API. Look up any developer by username to instantly view their profile, repositories, followers, following count, and account details.</p>
-    <div class="project-tech">
-      <span>React</span><span>Vite</span><span>GitHub API</span><span>CSS</span>
-    </div>
-    <div class="project-actions">
-      <a href="https://github.com/marouaneradi/github-profile-finder" target="_blank" class="proj-btn proj-btn-github">
-        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-        GitHub
-      </a>
-      <a href="https://github-profile-finder-three-rho.vercel.app/" target="_blank" class="proj-btn proj-btn-demo">
-        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-        Live Demo
-      </a>
-    </div>
-  </div>
-</div>
 
-
-
-        
-      </div>
+      </div><!-- /projects-grid -->
 
       <div class="projects-cta">
         <a href="https://github.com/marouaneradi" target="_blank" class="btn btn-ghost btn-lg">
           <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          View all on GitHub
+          <span data-i18n="proj_view_all">View all on GitHub</span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- CERTIFICATES SECTION -->
+  <!-- ================================================
+       CERTIFICATES SECTION
+  ================================================ -->
   <section class="section" id="certificates">
     <div class="container">
       <div class="section-label">
         <span class="section-num">05</span>
-        <span class="section-tag">// certificates</span>
+        <span class="section-tag" data-i18n="section_certs_tag">// certificates</span>
       </div>
-      <h2 class="section-title">My <span class="text-accent">Certifications</span></h2>
-      <p class="section-sub">Continuously learning. Continuously growing.</p>
+      <h2 class="section-title" data-i18n="certs_title">My <span class="text-accent">Certifications</span></h2>
+      <p class="section-sub"    data-i18n="certs_sub">Continuously learning. Continuously growing.</p>
+
       <div class="certs-grid">
         <div class="cert-card glass-card reveal-up">
           <div class="cert-icon">🌐</div>
           <div class="cert-body">
-            <h3>Web Fundamentals</h3>
-            <p>Web Development with HTML5</p>
+            <h3 data-i18n="cert1_title">Web Fundamentals</h3>
+            <p  data-i18n="cert1_desc">Web Development with HTML5</p>
             <span class="cert-badge">Frontend</span>
           </div>
           <div class="cert-glow"></div>
@@ -663,8 +654,8 @@
         <div class="cert-card glass-card reveal-up" style="--delay:.05s">
           <div class="cert-icon">🎨</div>
           <div class="cert-body">
-            <h3>Bootstrap</h3>
-            <p>Environment, Requirements & Setup</p>
+            <h3 data-i18n="cert2_title">Bootstrap</h3>
+            <p  data-i18n="cert2_desc">Environment, Requirements & Setup</p>
             <span class="cert-badge">UI Framework</span>
           </div>
           <div class="cert-glow"></div>
@@ -672,8 +663,8 @@
         <div class="cert-card glass-card reveal-up" style="--delay:.1s">
           <div class="cert-icon">🗄️</div>
           <div class="cert-body">
-            <h3>Database Fundamentals</h3>
-            <p>Database Concepts & Design</p>
+            <h3 data-i18n="cert3_title">Database Fundamentals</h3>
+            <p  data-i18n="cert3_desc">Database Concepts & Design</p>
             <span class="cert-badge">Backend</span>
           </div>
           <div class="cert-glow"></div>
@@ -681,8 +672,8 @@
         <div class="cert-card glass-card reveal-up" style="--delay:.15s">
           <div class="cert-icon">🔒</div>
           <div class="cert-body">
-            <h3>Cybersecurity (CC)</h3>
-            <p>Core Cybersecurity Principles</p>
+            <h3 data-i18n="cert4_title">Cybersecurity (CC)</h3>
+            <p  data-i18n="cert4_desc">Core Cybersecurity Principles</p>
             <span class="cert-badge">Security</span>
           </div>
           <div class="cert-glow"></div>
@@ -690,8 +681,8 @@
         <div class="cert-card glass-card reveal-up" style="--delay:.2s">
           <div class="cert-icon">🐍</div>
           <div class="cert-body">
-            <h3>Python</h3>
-            <p>New Developments in Python</p>
+            <h3 data-i18n="cert5_title">Python</h3>
+            <p  data-i18n="cert5_desc">New Developments in Python</p>
             <span class="cert-badge">Language</span>
           </div>
           <div class="cert-glow"></div>
@@ -699,8 +690,8 @@
         <div class="cert-card glass-card reveal-up" style="--delay:.25s">
           <div class="cert-icon">📋</div>
           <div class="cert-body">
-            <h3>Jira Cloud</h3>
-            <p>Planning Software Development Projects</p>
+            <h3 data-i18n="cert6_title">Jira Cloud</h3>
+            <p  data-i18n="cert6_desc">Planning Software Development Projects</p>
             <span class="cert-badge">Project Mgmt</span>
           </div>
           <div class="cert-glow"></div>
@@ -709,29 +700,35 @@
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- ================================================
+       CONTACT SECTION
+  ================================================ -->
   <section class="section section-dark" id="contact">
     <div class="container">
       <div class="section-label">
         <span class="section-num">06</span>
-        <span class="section-tag">// contact</span>
+        <span class="section-tag" data-i18n="section_contact_tag">// contact</span>
       </div>
       <div class="contact-grid">
         <div class="contact-left">
-          <h2 class="section-title">Let's Build <span class="text-accent">Something</span><br/>Great Together.</h2>
-          <p class="contact-sub">I'm open to full-time roles, freelance projects, and exciting collaborations. If you have an idea, I have the skills to bring it to life.</p>
+          <h2 class="section-title" data-i18n="contact_title">
+            Let's Build <span class="text-accent">Something</span><br/>Great Together.
+          </h2>
+          <p class="contact-sub" data-i18n="contact_sub">
+            I'm open to full-time roles, freelance projects, and exciting collaborations. If you have an idea, I have the skills to bring it to life.
+          </p>
           <div class="contact-info">
             <a href="mailto:radimarouane05@gmail.com" class="contact-item">
               <span class="contact-item-icon">✉</span>
-              <span>radimarouane05@gmail.com</span>
+              <span data-i18n="contact_email_label">radimarouane05@gmail.com</span>
             </a>
             <a href="tel:+212704460903" class="contact-item">
               <span class="contact-item-icon">📱</span>
-              <span>+212 704 460 903</span>
+              <span data-i18n="contact_phone_label">+212 704 460 903</span>
             </a>
             <div class="contact-item">
               <span class="contact-item-icon">📍</span>
-              <span>Ouarzazate, Morocco</span>
+              <span data-i18n="contact_location">Ouarzazate, Morocco</span>
             </div>
           </div>
           <div class="contact-socials">
@@ -746,43 +743,38 @@
             </a>
           </div>
         </div>
+
         <div class="contact-right">
-  <form class="contact-form glass-card" id="contactForm">
-
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" id="name" placeholder="Your name" required />
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="your@email.com" required />
-    </div>
-
-    <div class="form-group">
-      <label for="subject">Subject</label>
-      <select id="subject">
-        <option>Job Opportunity</option>
-        <option>Collaboration</option>
-        <option>Freelance Project</option>
-        <option>Just saying hello</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="message">Message</label>
-      <textarea id="message" placeholder="Tell me about your project..." rows="5" required></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-full">
-      <span>Send Message</span>
-      <svg viewBox="0 0 24 24">
-        <path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z"/>
-      </svg>
-    </button>
-
-  </form>
-</div>
+          <form class="contact-form glass-card" id="contactForm">
+            <div class="form-group">
+              <label for="name" data-i18n="form_label_name">Name</label>
+              <!-- data-i18n-placeholder is handled by i18n.js -->
+              <input type="text" id="name" data-i18n-placeholder="form_placeholder_name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="form_label_email">Email</label>
+              <input type="email" id="email" data-i18n-placeholder="form_placeholder_email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="subject" data-i18n="form_label_subject">Subject</label>
+              <!-- Options are updated by i18n.js applyLang() -->
+              <select id="subject">
+                <option data-i18n="form_opt1">Job Opportunity</option>
+                <option data-i18n="form_opt2">Collaboration</option>
+                <option data-i18n="form_opt3">Freelance Project</option>
+                <option data-i18n="form_opt4">Just saying hello</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message" data-i18n="form_label_message">Message</label>
+              <textarea id="message" data-i18n-placeholder="form_placeholder_message" placeholder="Tell me about your project..." rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span data-i18n="form_submit">Send Message</span>
+              <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -793,10 +785,12 @@
       <div class="footer-inner">
         <div class="footer-left">
           <span class="footer-logo">MR<span>.</span></span>
-          <p>Designed & Built by Marouane Radi<br/>© 2026 — All rights reserved.</p>
+          <p data-i18n="footer_built">Designed & Built by Marouane Radi<br/>© 2026 — All rights reserved.</p>
         </div>
         <div class="footer-right">
-          <p class="footer-hint">💡 <em>Try pressing <kbd>T</kbd> for theme, <kbd>↑↑↓↓←→←→BA</kbd> for a secret...</em></p>
+          <p class="footer-hint" data-i18n="footer_hint">
+            💡 <em>Try pressing <kbd>T</kbd> for theme, <kbd>↑↑↓↓←→←→BA</kbd> for a secret...</em>
+          </p>
         </div>
       </div>
     </div>
@@ -805,6 +799,9 @@
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
+  <!-- SCRIPTS: translations dict first, then i18n engine, then main -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
