@@ -193,6 +193,9 @@ function updateActiveNav() {
 
 // ============================================
 // HERO TYPING EFFECT
+// NOTE: The typed roles array is in English.
+// To internationalize roles per language, you
+// could hook this into the translations system.
 // ============================================
 function startHeroAnimations() {
   const roleEl = document.getElementById('heroRole');
@@ -320,6 +323,7 @@ if (savedTheme === 'light') {
 
 // ============================================
 // TOAST NOTIFICATIONS
+// (showToast is also called by i18n.js)
 // ============================================
 const toast = document.getElementById('toast');
 let toastTimeout;
@@ -334,12 +338,20 @@ function showToast(msg, duration = 2500) {
 
 // ============================================
 // KEYBOARD SHORTCUTS
+// Note: [L] shortcut cycles languages via i18n
 // ============================================
 const shortcuts = {
   't': () => toggleTheme(),
   'h': () => { document.getElementById('hero').scrollIntoView({ behavior: 'smooth' }); showToast('🏠 Jumped to top'); },
   'p': () => { document.getElementById('projects').scrollIntoView({ behavior: 'smooth' }); showToast('📁 Projects section'); },
   'c': () => { document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); showToast('📬 Contact section'); },
+  // [L] cycles through available languages
+  'l': () => {
+    const langs = ['en', 'fr', 'ar', 'es'];
+    const idx = langs.indexOf(currentLang);
+    const next = langs[(idx + 1) % langs.length];
+    if (typeof applyLang === 'function') applyLang(next);
+  }
 };
 
 document.addEventListener('keydown', (e) => {
@@ -351,9 +363,7 @@ document.addEventListener('keydown', (e) => {
   if (shortcuts[e.key.toLowerCase()]) {
     shortcuts[e.key.toLowerCase()]();
   }
-  // Konami Code handler
   konamiCheck(e.key);
-  // Matrix exit
   if (matrixActive) deactivateMatrix();
 });
 
@@ -445,7 +455,7 @@ if (contactForm) {
     const subject = contactForm.querySelector('select').value;
     const message = contactForm.querySelector('textarea').value;
 
-    const phoneNumber = "212704460903"; 
+    const phoneNumber = "212704460903";
 
     const whatsappMessage =
       `👋 New Portfolio Message%0A%0A` +
@@ -465,7 +475,7 @@ if (contactForm) {
 
 
 // ============================================
-// SKILL CARD HOVER INTERACTION
+// SKILL CARD HOVER INTERACTION (3D tilt)
 // ============================================
 document.querySelectorAll('.skill-card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
@@ -552,7 +562,7 @@ console.log(`
 %c 🔗  github.com/marouaneradi
 
 %c 🎮 Try the Konami Code: ↑↑↓↓←→←→BA
-%c ⌨  Keyboard shortcuts: [T] theme | [H] home | [P] projects | [C] contact
+%c ⌨  Keyboard shortcuts: [T] theme | [H] home | [P] projects | [C] contact | [L] cycle language
 `,
   'color: #00d4ff; font-size: 10px; font-family: monospace',
   'color: #f0f4f8; font-size: 14px; font-weight: bold',
@@ -564,6 +574,7 @@ console.log(`
 );
 
 console.log('%c 🔑 SECRET: This portfolio was crafted with passion and a lot of caffeine ☕', 'color: #7c3aed; font-style: italic; font-size: 11px');
+console.log('%c 🌍 i18n: Supports EN 🇬🇧 | FR 🇫🇷 | AR 🇲🇦 | ES 🇪🇸 — Press [L] to cycle', 'color: #00d4ff; font-size: 11px');
 
 
 // ============================================
