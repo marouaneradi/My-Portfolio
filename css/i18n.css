@@ -1,0 +1,347 @@
+/* ===================================
+   i18n.css — Custom Language Dropdown
+   Marouane Radi Portfolio
+   =================================== */
+
+/* ============================================
+   WRAPPER LI
+   ============================================ */
+.lang-switcher-wrap {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* ============================================
+   DROPDOWN ROOT
+   ============================================ */
+.lang-dd {
+  position: relative;
+  user-select: none;
+  outline: none;
+}
+
+/* ============================================
+   TRIGGER BUTTON
+   ============================================ */
+.lang-dd-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: .38rem .75rem .38rem .6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition:
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
+  white-space: nowrap;
+}
+
+/* Hover & open state */
+.lang-dd:hover .lang-dd-trigger,
+.lang-dd-open .lang-dd-trigger {
+  border-color: var(--accent);
+  background: var(--surface2);
+  box-shadow: 0 0 0 3px rgba(0,212,255,.08), 0 0 18px rgba(0,212,255,.12);
+}
+
+/* Globe icon */
+.lang-dd-globe {
+  font-size: .9rem;
+  line-height: 1;
+  opacity: .7;
+  transition: opacity .25s;
+}
+.lang-dd:hover .lang-dd-globe,
+.lang-dd-open .lang-dd-globe {
+  opacity: 1;
+}
+
+/* Flag */
+.lang-dd-flag {
+  font-size: .9rem;
+  line-height: 1;
+}
+
+/* Short code: EN / FR / AR / ES */
+.lang-dd-label {
+  font-family: 'Space Mono', monospace;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--text2);
+  transition: color .25s;
+}
+.lang-dd:hover .lang-dd-label,
+.lang-dd-open .lang-dd-label {
+  color: var(--accent);
+}
+
+/* Animated caret arrow */
+.lang-dd-arrow {
+  width: 10px;
+  height: 6px;
+  stroke: var(--text3);
+  flex-shrink: 0;
+  transition: transform .3s cubic-bezier(.4,0,.2,1), stroke .25s;
+}
+.lang-dd:hover .lang-dd-arrow,
+.lang-dd-open .lang-dd-arrow {
+  stroke: var(--accent);
+}
+.lang-dd-open .lang-dd-arrow {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   DROPDOWN PANEL
+   ============================================ */
+.lang-dd-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 160px;
+  background: rgba(13,17,23,.92);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 5px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,.45),
+    0 0 0 1px rgba(0,212,255,.06),
+    0 0 30px rgba(0,212,255,.05);
+  list-style: none;
+  z-index: 9999;
+
+  /* Hidden state */
+  opacity: 0;
+  transform: translateY(-8px) scale(.97);
+  pointer-events: none;
+  transition:
+    opacity .22s cubic-bezier(.4,0,.2,1),
+    transform .22s cubic-bezier(.4,0,.2,1);
+}
+
+/* Visible state */
+.lang-dd-open .lang-dd-menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* Subtle top glow line on the panel */
+.lang-dd-menu::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 1px;
+  opacity: .5;
+}
+
+/* ============================================
+   DROPDOWN ITEMS
+   ============================================ */
+.lang-dd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .55rem .85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background .18s ease,
+    color .18s ease,
+    transform .18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover */
+.lang-dd-item:hover {
+  background: var(--surface2);
+  transform: translateX(3px);
+}
+
+/* Active / selected */
+.lang-dd-item.lang-dd-active {
+  background: rgba(0,212,255,.1);
+  border: 1px solid rgba(0,212,255,.18);
+}
+
+/* Light sweep on hover */
+.lang-dd-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.06), transparent);
+  transform: skewX(-20deg);
+  transition: left .5s ease;
+}
+.lang-dd-item:hover::after {
+  left: 120%;
+}
+
+/* Flag in item */
+.lang-dd-item-flag {
+  font-size: 1.05rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Label in item */
+.lang-dd-item-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--text2);
+  flex: 1;
+  transition: color .18s;
+}
+
+.lang-dd-item:hover .lang-dd-item-label {
+  color: var(--text);
+}
+
+.lang-dd-item.lang-dd-active .lang-dd-item-label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Checkmark for active item */
+.lang-dd-check {
+  font-size: .75rem;
+  color: var(--accent);
+  margin-left: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(0,212,255,.6));
+}
+
+/* Staggered item entrance animation */
+.lang-dd-open .lang-dd-item:nth-child(1) { animation: itemIn .2s ease .03s both; }
+.lang-dd-open .lang-dd-item:nth-child(2) { animation: itemIn .2s ease .07s both; }
+.lang-dd-open .lang-dd-item:nth-child(3) { animation: itemIn .2s ease .11s both; }
+.lang-dd-open .lang-dd-item:nth-child(4) { animation: itemIn .2s ease .15s both; }
+
+@keyframes itemIn {
+  from { opacity: 0; transform: translateX(6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ============================================
+   RTL SUPPORT
+   ============================================ */
+body.rtl .nav              { flex-direction: row-reverse; }
+body.rtl .nav-menu         { flex-direction: row-reverse; }
+
+/* Panel opens to the left in RTL */
+body.rtl .lang-dd-menu     { right: auto; left: 0; }
+body.rtl .lang-dd-item:hover { transform: translateX(-3px); }
+
+body.rtl .hero-content {
+  margin-left: 0;
+  margin-right: max(2rem, calc((100vw - 1200px) / 2));
+  text-align: right;
+}
+body.rtl .hero-side {
+  right: auto;
+  left: max(2rem, calc((100vw - 1200px) / 2));
+  text-align: left;
+}
+body.rtl .hero-stat {
+  text-align: left;
+  padding-right: 0;
+  padding-left: 1rem;
+  border-right: none;
+  border-left: 2px solid var(--border2);
+}
+body.rtl .section-label    { flex-direction: row-reverse; }
+body.rtl .about-grid       { direction: rtl; }
+body.rtl .about-trait:hover{ transform: translateX(-4px); }
+body.rtl .exp-timeline     { padding-left: 0; padding-right: 2rem; }
+body.rtl .exp-line         { left: auto; right: 7px; }
+body.rtl .exp-dot          { left: auto; right: -2rem; }
+body.rtl .exp-card:hover   { transform: translateX(-6px); }
+body.rtl .exp-card-header  { flex-direction: row-reverse; }
+body.rtl .contact-grid     { direction: rtl; }
+body.rtl .hero-actions     { flex-direction: row-reverse; }
+body.rtl .hero-role-wrap   { flex-direction: row-reverse; }
+body.rtl .footer-inner     { flex-direction: row-reverse; }
+body.rtl .project-header,
+body.rtl .exp-list li      { flex-direction: row-reverse; }
+body.rtl .exp-list li      { text-align: right; }
+body.rtl .hero-scroll {
+  left: auto;
+  right: max(2rem, calc((100vw - 1200px) / 2));
+  flex-direction: row-reverse;
+}
+body.rtl .hero-scroll-line {
+  background: linear-gradient(270deg, var(--accent), transparent);
+}
+body.rtl {
+  font-family: 'DM Sans', 'Segoe UI', Tahoma, 'Arabic Typesetting', sans-serif;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .lang-switcher-wrap {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Panel centered on mobile */
+  .lang-dd-menu {
+    right: 50%;
+    transform: translateX(50%) translateY(-8px) scale(.97);
+    min-width: 180px;
+  }
+  .lang-dd-open .lang-dd-menu {
+    transform: translateX(50%) translateY(0) scale(1);
+  }
+
+  body.rtl .nav-menu {
+    flex-direction: column;
+    right: auto; left: 0;
+    transform: translateX(-100%);
+    border-left: none;
+    border-right: 1px solid var(--border);
+  }
+  body.rtl .nav-menu.open  { transform: none; }
+  body.rtl .hero-content   { margin-right: 0; text-align: right; }
+  body.rtl .hero-scroll    { right: 1.25rem; }
+}
+
+/* ============================================
+   LIGHT THEME
+   ============================================ */
+[data-theme="light"] .lang-dd-trigger {
+  background: rgba(0,0,0,.04);
+  border-color: rgba(0,0,0,.1);
+}
+
+[data-theme="light"] .lang-dd-menu {
+  background: rgba(241,245,249,.96);
+  border-color: rgba(0,0,0,.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,.15), 0 0 0 1px rgba(0,212,255,.08);
+}
+
+[data-theme="light"] .lang-dd-item:hover {
+  background: rgba(0,0,0,.05);
+}
+
+[data-theme="light"] .lang-dd-item.lang-dd-active {
+  background: rgba(0,212,255,.08);
+}
+
+[data-theme="light"] .lang-dd-item-label {
+  color: var(--text2);
+}
